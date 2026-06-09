@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_facility_root" name="Facility" sequence="50"
+              groups="group_facility_user"
+              web_icon="facility_management,static/description/icon.png"/>
+
+    <menuitem id="menu_facility_bookings" name="Bookings"
+              parent="menu_facility_root" action="action_facility_booking"
+              sequence="10"/>
+
+    <menuitem id="menu_facility_config" name="Configuration"
+              parent="menu_facility_root" sequence="90"
+              groups="group_facility_manager"/>
+
+    <menuitem id="menu_facility_sites" name="Sites"
+              parent="menu_facility_config" action="action_facility_site"
+              sequence="10"/>
+    <menuitem id="menu_facility_rooms" name="Rooms"
+              parent="menu_facility_config" action="action_facility_room"
+              sequence="20"/>
+    <menuitem id="menu_facility_equipment" name="Equipment"
+              parent="menu_facility_config" action="action_facility_equipment"
+              sequence="30"/>
+    <menuitem id="menu_facility_student_groups" name="Student Groups"
+              parent="menu_facility_config" action="action_facility_student_group"
+              sequence="35"/>
+    <menuitem id="menu_facility_constraints" name="Constraints"
+              parent="menu_facility_config" action="action_facility_constraint"
+              sequence="40"/>
+</odoo>

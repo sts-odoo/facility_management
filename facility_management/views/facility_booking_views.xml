@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_facility_booking_list" model="ir.ui.view">
+        <field name="name">facility.booking.list</field>
+        <field name="model">facility.booking</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="state == 'cancelled'" decoration-bf="state == 'confirmed'">
+                <field name="name"/>
+                <field name="room_id"/>
+                <field name="site_id" optional="show"/>
+                <field name="organizer_id"/>
+                <field name="start_datetime"/>
+                <field name="stop_datetime"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'confirmed'"
+                       decoration-info="state == 'draft'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_facility_booking_form" model="ir.ui.view">
+        <field name="name">facility.booking.form</field>
+        <field name="model">facility.booking</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" string="Confirm" type="object"
+                            class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_evaluate_constraints" string="Check Constraints"
+                            type="object" invisible="state == 'cancelled'"/>
+                    <button name="action_suggest_rooms" string="Suggest Rooms"
+                            type="object" invisible="state == 'cancelled'"/>
+                    <button name="action_cancel" string="Cancel" type="object"
+                            invisible="state == 'cancelled'"/>
+                    <button name="action_draft" string="Reset to Draft" type="object"
+                            invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="room_id"/>
+                            <field name="site_id"/>
+                            <field name="organizer_id"/>
+                        </group>
+                        <group>
+                            <field name="start_datetime"/>
+                            <field name="stop_datetime"/>
+                            <field name="student_group_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <field name="description" placeholder="Notes..."/>
+                    <notebook>
+                        <page string="Conflicts" name="conflicts">
+                            <field name="has_blocking_conflict" invisible="1"/>
+                            <field name="conflict_ids" readonly="1">
+                                <list decoration-danger="severity == 'hard'"
+                                      decoration-warning="severity == 'soft'">
+                                    <field name="constraint_id"/>
+                                    <field name="severity"/>
+                                    <field name="weight"/>
+                                    <field name="message"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_facility_booking_calendar" model="ir.ui.view">
+        <field name="name">facility.booking.calendar</field>
+        <field name="model">facility.booking</field>
+        <field name="arch" type="xml">
+            <calendar date_start="start_datetime" date_stop="stop_datetime"
+                      color="room_id" mode="week">
+                <field name="room_id"/>
+                <field name="organizer_id"/>
+                <field name="state"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_facility_booking_search" model="ir.ui.view">
+        <field name="name">facility.booking.search</field>
+        <field name="model">facility.booking</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="room_id"/>
+                <field name="site_id"/>
+                <field name="organizer_id"/>
+                <filter name="draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                <filter name="confirmed" string="Confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <separator/>
+                <filter name="has_conflict" string="Has Blocking Conflict"
+                        domain="[('has_blocking_conflict', '=', True)]"/>
+                <group>
+                    <filter name="group_room" string="Room" context="{'group_by': 'room_id'}"/>
+                    <filter name="group_site" string="Site" context="{'group_by': 'site_id'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_facility_booking" model="ir.actions.act_window">
+        <field name="name">Bookings</field>
+        <field name="res_model">facility.booking</field>
+        <field name="view_mode">list,calendar,form</field>
+        <field name="search_view_id" ref="view_facility_booking_search"/>
+    </record>
+</odoo>

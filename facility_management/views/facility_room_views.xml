@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_facility_room_list" model="ir.ui.view">
+        <field name="name">facility.room.list</field>
+        <field name="model">facility.room</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="site_id"/>
+                <field name="capacity"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_facility_room_form" model="ir.ui.view">
+        <field name="name">facility.room.form</field>
+        <field name="model">facility.room</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Room name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="site_id"/>
+                            <field name="capacity"/>
+                        </group>
+                        <group>
+                            <field name="equipment_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <field name="description" placeholder="Notes..."/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_facility_room" model="ir.actions.act_window">
+        <field name="name">Rooms</field>
+        <field name="res_model">facility.room</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

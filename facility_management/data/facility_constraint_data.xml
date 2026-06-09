@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Booking constraints. Each record binds a constraint to a
+             _check_<code> method on facility.booking. -->
+        <record id="constraint_past_date" model="facility.constraint">
+            <field name="name">Past Date</field>
+            <field name="code">past_date</field>
+            <field name="check_method">_check_past_date</field>
+            <field name="constraint_type">hard</field>
+            <field name="sequence">1</field>
+            <field name="description">A booking cannot start in the past.</field>
+        </record>
+
+        <record id="constraint_room_overlap" model="facility.constraint">
+            <field name="name">Room Overlap</field>
+            <field name="code">room_overlap</field>
+            <field name="check_method">_check_room_overlap</field>
+            <field name="constraint_type">hard</field>
+            <field name="sequence">2</field>
+            <field name="description">A room cannot host two confirmed bookings during the same time window.</field>
+        </record>
+    </data>
+</odoo>

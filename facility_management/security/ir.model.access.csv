@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_facility_site_user,facility.site.user,model_facility_site,group_facility_user,1,0,0,0
+access_facility_site_manager,facility.site.manager,model_facility_site,group_facility_manager,1,1,1,1
+access_facility_room_user,facility.room.user,model_facility_room,group_facility_user,1,0,0,0
+access_facility_room_manager,facility.room.manager,model_facility_room,group_facility_manager,1,1,1,1
+access_facility_equipment_user,facility.equipment.user,model_facility_equipment,group_facility_user,1,0,0,0
+access_facility_equipment_manager,facility.equipment.manager,model_facility_equipment,group_facility_manager,1,1,1,1
+access_facility_constraint_user,facility.constraint.user,model_facility_constraint,group_facility_user,1,0,0,0
+access_facility_constraint_manager,facility.constraint.manager,model_facility_constraint,group_facility_manager,1,1,1,1
+access_facility_student_group_user,facility.student.group.user,model_facility_student_group,group_facility_user,1,0,0,0
+access_facility_student_group_manager,facility.student.group.manager,model_facility_student_group,group_facility_manager,1,1,1,1
+access_facility_booking_user,facility.booking.user,model_facility_booking,group_facility_user,1,1,1,0
+access_facility_booking_manager,facility.booking.manager,model_facility_booking,group_facility_manager,1,1,1,1
+access_facility_booking_conflict_user,facility.booking.conflict.user,model_facility_booking_conflict,group_facility_user,1,1,1,1
+access_facility_booking_conflict_manager,facility.booking.conflict.manager,model_facility_booking_conflict,group_facility_manager,1,1,1,1

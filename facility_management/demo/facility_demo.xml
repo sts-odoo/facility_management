@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================= Equipment ================= -->
+    <record id="equipment_projector" model="facility.equipment">
+        <field name="name">Projector</field>
+        <field name="code">PROJ</field>
+    </record>
+    <record id="equipment_audio" model="facility.equipment">
+        <field name="name">Audio System</field>
+        <field name="code">AUDIO</field>
+    </record>
+    <record id="equipment_lab" model="facility.equipment">
+        <field name="name">Lab Stations</field>
+        <field name="code">LAB</field>
+    </record>
+    <record id="equipment_translation" model="facility.equipment">
+        <field name="name">Translation Booths</field>
+        <field name="code">TRANS</field>
+    </record>
+    <record id="equipment_micro" model="facility.equipment">
+        <field name="name">Microphone</field>
+        <field name="code">MICRO</field>
+    </record>
+    <record id="equipment_videoconf" model="facility.equipment">
+        <field name="name">Video Conference</field>
+        <field name="code">VC</field>
+    </record>
+    <record id="equipment_whiteboard" model="facility.equipment">
+        <field name="name">Whiteboard</field>
+        <field name="code">WB</field>
+    </record>
+
+    <!-- ================= Sites ================= -->
+    <record id="site_lln" model="facility.site">
+        <field name="name">Louvain-la-Neuve</field>
+        <field name="code">LLN</field>
+        <field name="latitude">50.6681</field>
+        <field name="longitude">4.6118</field>
+    </record>
+    <record id="site_woluwe" model="facility.site">
+        <field name="name">Bruxelles Woluwe</field>
+        <field name="code">WOL</field>
+        <field name="latitude">50.8470</field>
+        <field name="longitude">4.4520</field>
+    </record>
+    <record id="site_mons" model="facility.site">
+        <field name="name">UCLouvain FUCaM Mons</field>
+        <field name="code">MONS</field>
+        <field name="latitude">50.4542</field>
+        <field name="longitude">3.9523</field>
+    </record>
+
+    <!-- ================= Rooms ================= -->
+    <!-- Louvain-la-Neuve -->
+    <record id="room_sc01" model="facility.room">
+        <field name="name">Auditoire SC-01</field>
+        <field name="code">SC-01</field>
+        <field name="site_id" ref="site_lln"/>
+        <field name="capacity">120</field>
+        <field name="equipment_ids" eval="[(6, 0, [ref('equipment_projector'), ref('equipment_audio')])]"/>
+    </record>
+    <record id="room_bar91" model="facility.room">
+        <field name="name">Auditoire BARB-91</field>
+        <field name="code">BARB-91</field>
+        <field name="site_id" ref="site_lln"/>
+        <field name="capacity">400</field>
+        <field name="equipment_ids" eval="[(6, 0, [ref('equipment_projector'), ref('equipment_audio'), ref('equipment_micro'), ref('equipment_translation')])]"/>
+    </record>
+    <record id="room_aula" model="facility.room">
+        <field name="name">Aula Magna</field>
+        <field name="code">AULA</field>
+        <field name="site_id" ref="site_lln"/>
+        <field name="capacity">900</field>
+        <field name="equipment_ids" eval="[(6, 0, [ref('equipment_projector'), ref('equipment_audio'), ref('equipment_micro'), ref('equipment_translation')])]"/>
+    </record>
+    <record id="room_agor01" model="facility.room">
+        <field name="name">Auditoire AGOR-01</field>
+        <field name="code">AGOR-01</field>
+        <field name="site_id" ref="site_lln"/>
+        <field name="capacity">250</field>
+        <field name="equipment_ids" eval="[(6, 0, [ref('equipment_projector'), ref('equipment_audio'), ref('equipment_micro')])]"/>
+    </record>
+    <record id="room_cycl01" model="facility.room">
+        <field name="name">Salle CYCL-01</field>
+        <field name="code">CYCL-01</field>
+        <field name="site_id" ref="site_lln"/>
+        <field name="capacity">60</field>
+        <field name="equipment_ids" eval="[(6, 0, [ref('equipment_projector'), ref('equipment_whiteboard')])]"/>
+    </record>
+    <!-- Bruxelles Woluwe -->
+    <record id="room_lab_a" model="facility.room">
+        <field name="name">Lab A</field>
+        <field name="code">LAB-A</field>
+        <field name="site_id" ref="site_woluwe"/>
+        <field name="capacity">40</field>
+        <field name="equipment_ids" eval="[(6, 0, [ref('equipment_lab'), ref('equipment_projector')])]"/>
+    </record>
+    <record id="room_med" model="facility.room">
+        <field name="name">Auditoire MED-AUD</field>
+        <field name="code">MED-AUD</field>
+        <field name="site_id" ref="site_woluwe"/>
+        <field name="capacity">300</field>
+        <field name="equipment_ids" eval="[(6, 0, [ref('equipment_projector'), ref('equipment_audio'), ref('equipment_micro'), ref('equipment_videoconf')])]"/>
+    </record>
+    <record id="room_wol_cl1" model="facility.room">
+        <field name="name">Salle WOL-CL1</field>
+        <field name="code">WOL-CL1</field>
+        <field name="site_id" ref="site_woluwe"/>
+        <field name="capacity">50</field>
+        <field name="equipment_ids" eval="[(6, 0, [ref('equipment_projector'), ref('equipment_whiteboard')])]"/>
+    </record>
+    <!-- Mons -->
+    <record id="room_mons_aud" model="facility.room">
+        <field name="name">Auditoire MONS-AUD1</field>
+        <field name="code">MONS-AUD1</field>
+        <field name="site_id" ref="site_mons"/>
+        <field name="capacity">150</field>
+        <field name="equipment_ids" eval="[(6, 0, [ref('equipment_projector'), ref('equipment_audio'), ref('equipment_micro')])]"/>
+    </record>
+    <record id="room_mons_cl" model="facility.room">
+        <field name="name">Salle MONS-CL1</field>
+        <field name="code">MONS-CL1</field>
+        <field name="site_id" ref="site_mons"/>
+        <field name="capacity">45</field>
+        <field name="equipment_ids" eval="[(6, 0, [ref('equipment_projector'), ref('equipment_whiteboard')])]"/>
+    </record>
+
+    <!-- ================= Student groups (members = existing res.partner) ===== -->
+    <record id="group_epl11" model="facility.student.group">
+        <field name="name">EPL11</field>
+        <field name="code">EPL11</field>
+        <field name="member_ids" eval="[(6, 0, [
+            ref('base.res_partner_address_31'), ref('base.res_partner_address_3'),
+            ref('base.res_partner_address_4'), ref('base.res_partner_address_15'),
+            ref('base.res_partner_address_28')])]"/>
+    </record>
+    <record id="group_sinf12" model="facility.student.group">
+        <field name="name">SINF12</field>
+        <field name="code">SINF12</field>
+        <field name="member_ids" eval="[(6, 0, [
+            ref('base.res_partner_address_16'), ref('base.res_partner_address_5'),
+            ref('base.res_partner_address_10'), ref('base.res_partner_address_25'),
+            ref('base.res_partner_address_11')])]"/>
+    </record>
+    <record id="group_linfo11" model="facility.student.group">
+        <field name="name">LINFO11</field>
+        <field name="code">LINFO11</field>
+        <field name="member_ids" eval="[(6, 0, [
+            ref('base.res_partner_address_7'), ref('base.res_partner_address_14'),
+            ref('base.res_partner_address_33'), ref('base.res_partner_address_13'),
+            ref('base.res_partner_address_32')])]"/>
+    </record>
+    <record id="group_droi13" model="facility.student.group">
+        <field name="name">DROI13</field>
+        <field name="code">DROI13</field>
+        <field name="member_ids" eval="[(6, 0, [
+            ref('base.res_partner_address_24'), ref('base.res_partner_address_34'),
+            ref('base.res_partner_address_18'), ref('base.res_partner_address_17')])]"/>
+    </record>
+    <record id="group_math12" model="facility.student.group">
+        <field name="name">MATH12</field>
+        <field name="code">MATH12</field>
+        <field name="member_ids" eval="[(6, 0, [
+            ref('base.res_partner_address_2'), ref('base.res_partner_address_27'),
+            ref('base.res_partner_address_1'), ref('base.res_partner_main1'),
+            ref('base.res_partner_main2')])]"/>
+    </record>
+
+    <!-- ================= Bookings / course sessions (left in draft) ========= -->
+    <record id="booking_demo_1" model="facility.booking">
+        <field name="room_id" ref="room_sc01"/>
+        <field name="organizer_id" ref="base.user_admin"/>
+        <field name="start_datetime" eval="(datetime.now() + timedelta(days=2)).strftime('%Y-%m-%d 08:00:00')"/>
+        <field name="stop_datetime" eval="(datetime.now() + timedelta(days=2)).strftime('%Y-%m-%d 10:00:00')"/>
+        <field name="description">LEPL1108 — Special guest lecture.</field>
+        <field name="student_group_ids" eval="[(6, 0, [ref('group_epl11')])]"/>
+    </record>
+    <record id="booking_demo_2" model="facility.booking">
+        <field name="room_id" ref="room_lab_a"/>
+        <field name="organizer_id" ref="base.user_demo"/>
+        <field name="start_datetime" eval="(datetime.now() + timedelta(days=3)).strftime('%Y-%m-%d 14:00:00')"/>
+        <field name="stop_datetime" eval="(datetime.now() + timedelta(days=3)).strftime('%Y-%m-%d 16:00:00')"/>
+        <field name="description">LSINF1252 — Lab session.</field>
+        <field name="student_group_ids" eval="[(6, 0, [ref('group_sinf12')])]"/>
+    </record>
+    <record id="booking_demo_3" model="facility.booking">
+        <field name="room_id" ref="room_aula"/>
+        <field name="organizer_id" ref="base.user_admin"/>
+        <field name="start_datetime" eval="(datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d 10:00:00')"/>
+        <field name="stop_datetime" eval="(datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d 12:00:00')"/>
+        <field name="description">LINFO1101 — Introduction lecture.</field>
+        <field name="student_group_ids" eval="[(6, 0, [ref('group_linfo11')])]"/>
+    </record>
+    <record id="booking_demo_4" model="facility.booking">
+        <field name="room_id" ref="room_agor01"/>
+        <field name="organizer_id" ref="base.user_demo"/>
+        <field name="start_datetime" eval="(datetime.now() + timedelta(days=4)).strftime('%Y-%m-%d 09:00:00')"/>
+        <field name="stop_datetime" eval="(datetime.now() + timedelta(days=4)).strftime('%Y-%m-%d 11:00:00')"/>
+        <field name="description">LDROI1001 — Lecture.</field>
+        <field name="student_group_ids" eval="[(6, 0, [ref('group_droi13')])]"/>
+    </record>
+    <record id="booking_demo_5" model="facility.booking">
+        <field name="room_id" ref="room_med"/>
+        <field name="organizer_id" ref="base.user_admin"/>
+        <field name="start_datetime" eval="(datetime.now() + timedelta(days=5)).strftime('%Y-%m-%d 13:00:00')"/>
+        <field name="stop_datetime" eval="(datetime.now() + timedelta(days=5)).strftime('%Y-%m-%d 15:00:00')"/>
+        <field name="description">WMDS1101 — Lecture (Woluwe).</field>
+        <field name="student_group_ids" eval="[(6, 0, [ref('group_math12')])]"/>
+    </record>
+    <record id="booking_demo_6" model="facility.booking">
+        <field name="room_id" ref="room_mons_aud"/>
+        <field name="organizer_id" ref="base.user_demo"/>
+        <field name="start_datetime" eval="(datetime.now() + timedelta(days=6)).strftime('%Y-%m-%d 08:00:00')"/>
+        <field name="stop_datetime" eval="(datetime.now() + timedelta(days=6)).strftime('%Y-%m-%d 10:00:00')"/>
+        <field name="description">MONS — Plenary session.</field>
+        <field name="student_group_ids" eval="[(6, 0, [ref('group_sinf12')])]"/>
+    </record>
+    <record id="booking_demo_7" model="facility.booking">
+        <field name="room_id" ref="room_cycl01"/>
+        <field name="organizer_id" ref="base.user_admin"/>
+        <field name="start_datetime" eval="(datetime.now() + timedelta(days=7)).strftime('%Y-%m-%d 14:00:00')"/>
+        <field name="stop_datetime" eval="(datetime.now() + timedelta(days=7)).strftime('%Y-%m-%d 17:00:00')"/>
+        <field name="description">LEPL1503 — Practical work.</field>
+        <field name="student_group_ids" eval="[(6, 0, [ref('group_epl11')])]"/>
+    </record>
+    <record id="booking_demo_8" model="facility.booking">
+        <field name="room_id" ref="room_wol_cl1"/>
+        <field name="organizer_id" ref="base.user_demo"/>
+        <field name="start_datetime" eval="(datetime.now() + timedelta(days=8)).strftime('%Y-%m-%d 10:00:00')"/>
+        <field name="stop_datetime" eval="(datetime.now() + timedelta(days=8)).strftime('%Y-%m-%d 12:00:00')"/>
+        <field name="description">LINFO1102 — Seminar.</field>
+        <field name="student_group_ids" eval="[(6, 0, [ref('group_linfo11')])]"/>
+    </record>
+</odoo>

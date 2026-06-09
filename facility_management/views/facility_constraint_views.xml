@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_facility_constraint_list" model="ir.ui.view">
+        <field name="name">facility.constraint.list</field>
+        <field name="model">facility.constraint</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="check_method"/>
+                <field name="constraint_type"/>
+                <field name="weight"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_facility_constraint_form" model="ir.ui.view">
+        <field name="name">facility.constraint.form</field>
+        <field name="model">facility.constraint</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Constraint name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="check_method"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="constraint_type"/>
+                            <field name="weight" invisible="constraint_type == 'hard'"/>
+                            <field name="sequence"/>
+                        </group>
+                    </group>
+                    <field name="description" placeholder="What does this constraint check?"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_facility_constraint_search" model="ir.ui.view">
+        <field name="name">facility.constraint.search</field>
+        <field name="model">facility.constraint</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+                <filter name="hard" string="Hard" domain="[('constraint_type', '=', 'hard')]"/>
+                <filter name="soft" string="Soft" domain="[('constraint_type', '=', 'soft')]"/>
+                <separator/>
+                <filter name="inactive" string="Archived" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_facility_constraint" model="ir.actions.act_window">
+        <field name="name">Constraints</field>
+        <field name="res_model">facility.constraint</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_facility_constraint_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Define a booking constraint</p>
+            <p>Each constraint points to a <code>check_method</code> on facility.booking
+               that returns the violations to report when a booking is checked.</p>
+        </field>
+    </record>
+</odoo>
